@@ -1,17 +1,17 @@
-import React from "react";
-import { FormControl, TextField } from "@material-ui/core";
+import React from 'react'
+import { FormControl, TextField } from '@material-ui/core'
 
-import { RegisterDto } from "../../common/auth/types";
+import { RegisterDto } from '../../common/auth/types'
 
-import useStyles from "./styles";
+import useStyles from './styles'
 
 type Props = {
-    form: RegisterDto;
-    handleChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
-};
+    form: RegisterDto
+    handleChange: (evt: React.ChangeEvent<HTMLInputElement>) => void
+}
 
 const Register = ({ form, handleChange }: Props) => {
-    const classes = useStyles();
+    const classes = useStyles()
 
     return (
         <form className={classes.form}>
@@ -20,7 +20,7 @@ const Register = ({ form, handleChange }: Props) => {
                     name="email"
                     label="Email"
                     variant="outlined"
-                    value={form.email}
+                    value={form.email ?? ''}
                     onChange={handleChange}
                     fullWidth
                 />
@@ -30,7 +30,7 @@ const Register = ({ form, handleChange }: Props) => {
                     name="username"
                     label="Username"
                     variant="outlined"
-                    value={form.username}
+                    value={form.username ?? ''}
                     onChange={handleChange}
                     fullWidth
                 />
@@ -40,12 +40,12 @@ const Register = ({ form, handleChange }: Props) => {
                     name="password"
                     label="Password"
                     variant="outlined"
-                    value={form.password}
+                    value={form.password ?? ''}
                     onChange={handleChange}
                     fullWidth
                 />
             </FormControl>
         </form>
-    );
-};
-export default Register;
+    )
+}
+export default Register

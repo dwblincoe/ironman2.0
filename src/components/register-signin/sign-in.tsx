@@ -1,17 +1,17 @@
-import React from "react";
-import { FormControl, TextField } from "@material-ui/core";
+import React from 'react'
+import { FormControl, TextField } from '@material-ui/core'
 
-import { SignInDto } from "../../common/auth/types";
+import { SignInDto } from '../../common/auth/types'
 
-import useStyles from "./styles";
+import useStyles from './styles'
 
 type Props = {
-    form: SignInDto;
-    handleChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
-};
+    form: SignInDto
+    handleChange: (evt: React.ChangeEvent<HTMLInputElement>) => void
+}
 
 const SignIn = ({ form, handleChange }: Props) => {
-    const classes = useStyles();
+    const classes = useStyles()
 
     return (
         <form className={classes.form}>
@@ -20,7 +20,7 @@ const SignIn = ({ form, handleChange }: Props) => {
                     name="email"
                     label="Email"
                     variant="outlined"
-                    value={form.email}
+                    value={form.email ?? ''}
                     onChange={handleChange}
                     fullWidth
                 />
@@ -30,12 +30,12 @@ const SignIn = ({ form, handleChange }: Props) => {
                     name="password"
                     label="Password"
                     variant="outlined"
-                    value={form.password}
+                    value={form.password ?? ''}
                     onChange={handleChange}
                     fullWidth
                 />
             </FormControl>
         </form>
-    );
-};
-export default SignIn;
+    )
+}
+export default SignIn

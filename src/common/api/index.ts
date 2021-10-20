@@ -1,11 +1,16 @@
-import { BaseQueryFn } from "@reduxjs/toolkit/dist/query";
-import axios, { AxiosError } from "axios";
-import { toast } from "react-toastify";
+import { BaseQueryFn } from '@reduxjs/toolkit/dist/query'
+import axios, { AxiosError } from 'axios'
+import { toast } from 'react-toastify'
+
+type Props = {
+    query: string
+    variables?: any
+}
 
 export const graphQLBaseQuery =
-    (): BaseQueryFn<{ query: string; variables?: any }, unknown, AxiosError> =>
-    async ({ query, variables }: { query: string; variables?: any }) => {
-        const token = localStorage.getItem("token");
+    (): BaseQueryFn<Props, unknown, AxiosError> =>
+    async ({ query, variables }: Props): Promise<any> => {
+        const token = localStorage.getItem('token')
         try {
             const results = await axios.post(
                 `${process.env.REACT_APP_API_URL}`,
@@ -18,19 +23,21 @@ export const graphQLBaseQuery =
                         Authorization: token,
                     },
                 }
-            );
+            )
 
             if (!results.data.errors) {
-                let name = Object.keys(results.data.data)[0];
-                return { data: results.data.data[name] };
+                let name = Object.keys(results.data.data)[0]
+                return { data: results.data.data[name] }
             } else {
                 results.data.errors.forEach((error: any) =>
                     toast.error(error.message)
-                );
-                return { errors: results.data.errors };
+                )
+                return { errors: results.data.errors }
             }
         } catch (error) {
-            toast.error(error.toString());
-            return error;
+            if (axios.isAxiosError(error)) {
+                toast.error(error.toString())
+            }
+            return error
         }
-    };
+    }

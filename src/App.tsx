@@ -1,13 +1,13 @@
-import { Suspense, lazy } from "react";
-import { Container, CircularProgress } from "@material-ui/core";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Suspense, lazy } from 'react'
+import { Container, CircularProgress } from '@material-ui/core'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import { AuthProvider } from "./common/auth/AuthContext";
+import { AuthProvider } from './common/auth/AuthContext'
 
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
+import Navbar from './components/navbar'
+import Footer from './components/footer'
 
-const Home = lazy(() => import("./pages/home"));
+const Home = lazy(() => import('./pages/home'))
 
 const App = () => {
     return (
@@ -26,7 +26,7 @@ const App = () => {
 
             <Footer />
         </Container>
-    );
-};
+    )
+}
 
-export default App;
+export default App
