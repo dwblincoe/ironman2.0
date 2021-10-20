@@ -1,0 +1,17 @@
+@import "react-toastify/dist/ReactToastify.css";
+
+body {
+    margin: 0;
+}
+
+input:-internal-autofill-selected {
+    background-color: transparent !important;
+}
+
+.mt-1 {
+    margin-top: 10px !important;
+}
+
+.ml-1 {
+    margin-left: 10px !important;
+}

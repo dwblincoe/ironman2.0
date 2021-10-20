@@ -1,14 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { ThemeProvider, CssBaseline } from "@material-ui/core";
+import { ToastContainer } from "react-toastify";
+
+import reportWebVitals from "./reportWebVitals";
+import { store } from "./store";
+import theme from "./styles/theme";
+
+import App from "./App";
+
+import "./styles/global.scss";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <Provider store={store}>
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <App />
+                <ToastContainer
+                    position="bottom-right"
+                    autoClose={5000}
+                    closeOnClick
+                />
+            </ThemeProvider>
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
