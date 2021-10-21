@@ -1,4 +1,5 @@
 import { useEffect, useContext } from 'react'
+import { Typography } from '@material-ui/core'
 
 import { AuthContext } from '../../common/auth/AuthContext'
 
@@ -11,7 +12,15 @@ const Home = () => {
 
     return (
         <div>
-            <h2>HOME</h2>
+            {auth ? (
+                <Typography variant="h2" color="textSecondary">
+                    Home
+                </Typography>
+            ) : (
+                <Typography variant="h2" color="textSecondary">
+                    YOU NEED TO LOG IN
+                </Typography>
+            )}
         </div>
     )
 }
