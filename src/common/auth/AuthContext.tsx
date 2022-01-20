@@ -6,6 +6,7 @@ import { useIsAuthenticatedMutation } from './slice'
 export interface ContextType {
     auth: UserDto | null
     setTokenAndAuth: (value: AuthUserDto) => void
+    logout: () => void
 }
 
 export const AuthContext = createContext<ContextType>({} as ContextType)
@@ -34,8 +35,14 @@ export const AuthProvider: React.FC = (props) => {
         setAuth(dto)
     }
 
+    const logout = () => {
+        localStorage.clear()
+
+        setAuth(null)
+    }
+
     return (
-        <AuthContext.Provider value={{ auth, setTokenAndAuth }}>
+        <AuthContext.Provider value={{ auth, setTokenAndAuth, logout }}>
             {props.children}
         </AuthContext.Provider>
     )

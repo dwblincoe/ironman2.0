@@ -1,5 +1,11 @@
-import React from 'react'
-import { FormControl, TextField } from '@material-ui/core'
+import { ChangeEvent, useState } from 'react'
+import {
+    FormControl,
+    TextField,
+    InputAdornment,
+    IconButton,
+} from '@mui/material'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
 
 import { SignInDto } from '../../common/auth/types'
 
@@ -7,11 +13,12 @@ import useStyles from './styles'
 
 type Props = {
     form: SignInDto
-    handleChange: (evt: React.ChangeEvent<HTMLInputElement>) => void
+    handleChange: (evt: ChangeEvent<HTMLInputElement>) => void
 }
 
 const SignIn = ({ form, handleChange }: Props) => {
     const classes = useStyles()
+    const [showPass, setShowPass] = useState(false)
 
     return (
         <form className={classes.form}>
@@ -30,6 +37,22 @@ const SignIn = ({ form, handleChange }: Props) => {
                     name="password"
                     label="Password"
                     variant="outlined"
+                    type={showPass ? 'text' : 'password'}
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton
+                                    onClick={() => setShowPass(!showPass)}
+                                >
+                                    {showPass ? (
+                                        <Visibility />
+                                    ) : (
+                                        <VisibilityOff />
+                                    )}
+                                </IconButton>
+                            </InputAdornment>
+                        ),
+                    }}
                     value={form.password ?? ''}
                     onChange={handleChange}
                     fullWidth

@@ -1,10 +1,9 @@
-import React from "react";
-import { CircularProgress } from "@material-ui/core";
-import Button, { ButtonProps } from "@material-ui/core/Button";
+import React from 'react'
+import { Button, ButtonProps, CircularProgress } from '@mui/material'
 
 type Props = {
-    loading: boolean;
-};
+    loading: boolean
+}
 
 const LoadingButton: React.FC<Props & ButtonProps> = ({
     children,
@@ -15,6 +14,6 @@ const LoadingButton: React.FC<Props & ButtonProps> = ({
         {children}
         {loading && <CircularProgress />}
     </Button>
-);
+)
 
-export default LoadingButton;
+export default LoadingButton

@@ -1,16 +1,16 @@
-import { createTheme, responsiveFontSizes } from "@material-ui/core/styles";
+import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 
-import colors from "./colors";
+import colors from './colors'
 
 const theme = createTheme({
     typography: {
-        fontFamily: "Roboto",
-        h1: { fontFamily: "Montserrat" },
-        h2: { fontFamily: "Montserrat" },
-        h3: { fontFamily: "Montserrat" },
-        h4: { fontFamily: "Montserrat" },
-        h5: { fontFamily: "Montserrat" },
-        h6: { fontFamily: "Montserrat" },
+        fontFamily: 'Roboto',
+        h1: { fontFamily: 'Montserrat' },
+        h2: { fontFamily: 'Montserrat' },
+        h3: { fontFamily: 'Montserrat' },
+        h4: { fontFamily: 'Montserrat' },
+        h5: { fontFamily: 'Montserrat' },
+        h6: { fontFamily: 'Montserrat' },
     },
     palette: {
         primary: {
@@ -24,79 +24,100 @@ const theme = createTheme({
             white: colors.white,
         },
         text: {
-            primary: colors.offWhite,
-            secondary: colors.blue,
+            primary: colors.blue,
+            secondary: colors.offWhite,
         },
     },
-    props: {
-        MuiButtonBase: {
-            disableRipple: true,
-        },
-    },
-    overrides: {
+    components: {
         MuiContainer: {
-            root: {
-                minHeight: "100vh",
-                padding: "0px",
-                overflow: "auto",
-                "@media (min-width: 600px)": {
-                    padding: "0px",
+            styleOverrides: {
+                root: {
+                    maxHeight: 'calc(100vh - 170px)',
+                    padding: '0px',
+                    overflow: 'auto',
+                    '@media (min-width: 600px)': {
+                        padding: '0px',
+                    },
                 },
             },
         },
         MuiButtonBase: {
-            root: {
-                "&.loading": {
-                    "& span": {
-                        position: "relative",
-                        width: "fit-content",
-                        "& .MuiCircularProgress-root": {
-                            color: colors.offWhite,
-                            position: "absolute",
-                            right: "-40px",
-                            width: "30px !important",
-                            height: "30px !important",
+            defaultProps: {
+                disableRipple: true,
+            },
+            styleOverrides: {
+                root: {
+                    '&.loading': {
+                        '& span': {
+                            position: 'relative',
+                            width: 'fit-content',
+                            '& .MuiCircularProgress-root': {
+                                color: colors.offWhite,
+                                position: 'absolute',
+                                right: '-40px',
+                                width: '30px !important',
+                                height: '30px !important',
+                            },
                         },
                     },
                 },
             },
         },
         MuiButton: {
-            root: {
-                borderRadius: "0px",
+            styleOverrides: {
+                root: {
+                    borderRadius: '0px',
+                },
+            },
+        },
+        MuiInputLabel: {
+            styleOverrides: {
+                root: {
+                    color: colors.blue,
+                },
             },
         },
         MuiInput: {
-            root: {
-                borderRadius: "2px",
+            styleOverrides: {
+                root: {
+                    borderRadius: '2px',
+                },
             },
         },
         MuiInputBase: {
-            root: {
-                borderRadius: "2px",
-                color: colors.blue,
+            styleOverrides: {
+                root: {
+                    borderRadius: '2px',
+                    color: colors.blue,
+                },
             },
         },
         MuiOutlinedInput: {
-            root: {
-                borderRadius: "2px",
-                "&:hover fieldset": {
-                    border: `2px solid ${colors.blue} !important`,
+            styleOverrides: {
+                root: {
+                    borderRadius: '2px',
+                    '&:hover fieldset': {
+                        border: `2px solid ${colors.blue} !important`,
+                    },
                 },
             },
         },
         MuiLink: {
-            root: {
-                cursor: "pointer",
+            styleOverrides: {
+                root: {
+                    cursor: 'pointer',
+                },
             },
         },
         MuiGrid: {
-            "spacing-xs-4": {
-                width: "unset",
-                margin: "unset",
+            styleOverrides: {
+                'spacing-xs-4': {
+                    width: 'unset',
+                    margin: 'unset',
+                },
             },
         },
     },
-});
+})
 
-export default responsiveFontSizes(theme);
+export default responsiveFontSizes(theme)

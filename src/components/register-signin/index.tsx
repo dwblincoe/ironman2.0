@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
-import { Link, Grid, Typography } from '@material-ui/core'
+import { Link, Grid, Typography } from '@mui/material'
 
 import { SignInDto, RegisterDto } from '../../common/auth/types'
 import { useLoginMutation, useRegisterMutation } from '../../common/auth/slice'
@@ -26,6 +26,7 @@ const RegisterSignIn = ({ setVisible }: Props) => {
             isError: loginError,
         },
     ] = useLoginMutation()
+
     const [
         register,
         {
@@ -73,7 +74,7 @@ const RegisterSignIn = ({ setVisible }: Props) => {
 
     return (
         <Grid container justifyContent="center" spacing={4}>
-            <Typography variant="h4" color="textSecondary">
+            <Typography variant="h4">
                 {registerToggle ? 'Register' : 'Sign In'}
             </Typography>
             <Grid item xs={12}>
@@ -99,7 +100,7 @@ const RegisterSignIn = ({ setVisible }: Props) => {
             </Grid>
             <Grid item>
                 {registerToggle ? (
-                    <Typography color="textSecondary">
+                    <Typography>
                         Already have an account?{' '}
                         <Link
                             onClick={() => setRegisterToggle(!registerToggle)}
@@ -108,8 +109,8 @@ const RegisterSignIn = ({ setVisible }: Props) => {
                         </Link>
                     </Typography>
                 ) : (
-                    <Typography color="textSecondary">
-                        Don't have an account?
+                    <Typography>
+                        Don't have an account?{' '}
                         <Link
                             onClick={() => setRegisterToggle(!registerToggle)}
                         >

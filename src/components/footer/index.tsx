@@ -1,12 +1,12 @@
-import { Typography } from "@material-ui/core";
-import TsanLogo from "../../assets/siren-full-logo.svg";
-import Facebook from "../../assets/facebook.svg";
-import YouTube from "../../assets/youtube.svg";
+import { Typography } from '@mui/material'
+import TsanLogo from '../../assets/siren-full-logo.svg'
+import Facebook from '../../assets/facebook.svg'
+import YouTube from '../../assets/youtube.svg'
 
-import useStyles from "./styles";
+import useStyles from './styles'
 
 const Footer = () => {
-    const classes = useStyles();
+    const classes = useStyles()
 
     return (
         <div className={classes.main}>
@@ -14,11 +14,11 @@ const Footer = () => {
                 <img src={Facebook} alt="facebook-icon" />
                 <img src={YouTube} alt="youtube-icon" className="ml-1" />
             </div>
-            <Typography>
+            <Typography color="textSecondary">
                 &copy; Drew Blincoe | The Spoiler Alert Network
             </Typography>
         </div>
-    );
-};
+    )
+}
 
-export default Footer;
+export default Footer

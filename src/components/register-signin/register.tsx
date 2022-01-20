@@ -1,5 +1,11 @@
-import React from 'react'
-import { FormControl, TextField } from '@material-ui/core'
+import { ChangeEvent, useState } from 'react'
+import {
+    FormControl,
+    TextField,
+    InputAdornment,
+    IconButton,
+} from '@mui/material'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
 
 import { RegisterDto } from '../../common/auth/types'
 
@@ -7,45 +13,50 @@ import useStyles from './styles'
 
 type Props = {
     form: RegisterDto
-    handleChange: (evt: React.ChangeEvent<HTMLInputElement>) => void
+    handleChange: (evt: ChangeEvent<HTMLInputElement>) => void
 }
 
 const Register = ({ form, handleChange }: Props) => {
     const classes = useStyles()
+    const [showPass, setShowPass] = useState(false)
 
     return (
-        <form className={classes.form}>
-            <FormControl>
-                <TextField
-                    name="email"
-                    label="Email"
-                    variant="outlined"
-                    value={form.email ?? ''}
-                    onChange={handleChange}
-                    fullWidth
-                />
-            </FormControl>
-            <FormControl>
-                <TextField
-                    name="username"
-                    label="Username"
-                    variant="outlined"
-                    value={form.username ?? ''}
-                    onChange={handleChange}
-                    fullWidth
-                />
-            </FormControl>
-            <FormControl>
-                <TextField
-                    name="password"
-                    label="Password"
-                    variant="outlined"
-                    value={form.password ?? ''}
-                    onChange={handleChange}
-                    fullWidth
-                />
-            </FormControl>
-        </form>
+        <div className={classes.form}>
+            <TextField
+                name="email"
+                label="Email"
+                variant="outlined"
+                value={form.email ?? ''}
+                onChange={handleChange}
+                fullWidth
+            />
+            <TextField
+                name="username"
+                label="Username"
+                variant="outlined"
+                value={form.username ?? ''}
+                onChange={handleChange}
+                fullWidth
+            />
+            <TextField
+                name="password"
+                label="Password"
+                variant="outlined"
+                type={showPass ? 'text' : 'password'}
+                value={form.password ?? ''}
+                onChange={handleChange}
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <IconButton onClick={() => setShowPass(!showPass)}>
+                                {showPass ? <Visibility /> : <VisibilityOff />}
+                            </IconButton>
+                        </InputAdornment>
+                    ),
+                }}
+                fullWidth
+            />
+        </div>
     )
 }
 export default Register

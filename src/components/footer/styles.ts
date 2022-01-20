@@ -1,30 +1,33 @@
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, createStyles } from '@mui/styles'
+import { Theme } from '@mui/material'
 
-export default makeStyles((theme: Theme) => {
-    const { primary } = theme.palette;
+const useStyles = makeStyles((theme: Theme) => {
+    const { primary } = theme.palette
 
     return createStyles({
         main: {
-            maxWidth: "inherit",
-            width: "100%",
+            maxWidth: 'inherit',
+            width: '100%',
             background: primary.main,
-            padding: "10px",
-            position: "fixed",
+            padding: '10px',
+            position: 'fixed',
             bottom: 0,
-            minHeight: "100px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-evenly",
-            alignItems: "center",
+            minHeight: '100px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
         },
 
         imgContainer: {
-            display: "flex",
+            display: 'flex',
 
-            "& img": {
-                width: "25px",
-                cursor: "pointer",
+            '& img': {
+                width: '25px',
+                cursor: 'pointer',
             },
         },
-    });
-});
+    })
+})
+
+export default useStyles
