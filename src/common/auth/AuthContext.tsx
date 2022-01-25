@@ -7,6 +7,7 @@ export interface ContextType {
     auth: UserDto | null
     setTokenAndAuth: (value: AuthUserDto) => void
     logout: () => void
+    setAuth: (user: UserDto) => void
 }
 
 export const AuthContext = createContext<ContextType>({} as ContextType)
@@ -42,7 +43,9 @@ export const AuthProvider: React.FC = (props) => {
     }
 
     return (
-        <AuthContext.Provider value={{ auth, setTokenAndAuth, logout }}>
+        <AuthContext.Provider
+            value={{ auth, setTokenAndAuth, logout, setAuth }}
+        >
             {props.children}
         </AuthContext.Provider>
     )

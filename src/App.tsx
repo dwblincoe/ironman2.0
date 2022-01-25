@@ -14,31 +14,29 @@ const AdminDashboard = lazy(() => import('./pages/admin-dashboard'))
 
 const App = () => {
     return (
-        <>
+        <Suspense fallback={<CircularProgress />}>
             <AuthProvider>
                 <Router>
                     <Navbar />
                     <Container maxWidth="xl">
-                        <Suspense fallback={<CircularProgress />}>
-                            <Switch>
-                                <Route exact path="/" component={Home} />
-                                <ProtectedRoute
-                                    path="/profile"
-                                    component={Profile}
-                                />
-                                <ProtectedRoute
-                                    path="/admin/dashboard"
-                                    component={AdminDashboard}
-                                    admin
-                                />
-                            </Switch>
-                        </Suspense>
+                        <Switch>
+                            <Route exact path="/" component={Home} />
+                            <ProtectedRoute
+                                path="/profile"
+                                component={Profile}
+                            />
+                            <ProtectedRoute
+                                path="/admin/dashboard"
+                                component={AdminDashboard}
+                                admin
+                            />
+                        </Switch>
                     </Container>
                 </Router>
             </AuthProvider>
 
             <Footer />
-        </>
+        </Suspense>
     )
 }
 

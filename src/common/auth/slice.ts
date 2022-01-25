@@ -1,6 +1,12 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 
-import { SignInDto, AuthUserDto, RegisterDto, UserDto } from './types'
+import {
+    SignInDto,
+    AuthUserDto,
+    RegisterDto,
+    UserDto,
+    UserInputDto,
+} from './types'
 import { graphQLBaseQuery } from '../api'
 
 const signInQuery = `
@@ -42,6 +48,19 @@ const isAuthenticatedQuery = `
     }
 `
 
+const updateUserQuery = `
+    mutation updateUser($user: UpdateUserInput!){
+        updateUser(user: $user){
+            id
+            firstName
+            lastName
+            email
+            username
+            isAdmin
+        }
+    }
+`
+
 export const authApi = createApi({
     reducerPath: 'authApi',
     baseQuery: graphQLBaseQuery(),
@@ -63,6 +82,14 @@ export const authApi = createApi({
                 },
             }),
         }),
+        updateUser: builder.mutation<UserDto, UserInputDto>({
+            query: (dto: UserInputDto) => ({
+                query: updateUserQuery,
+                variables: {
+                    user: dto,
+                },
+            }),
+        }),
         isAuthenticated: builder.mutation<UserDto, void>({
             query: () => ({
                 query: isAuthenticatedQuery,
@@ -75,4 +102,5 @@ export const {
     useLoginMutation,
     useRegisterMutation,
     useIsAuthenticatedMutation,
+    useUpdateUserMutation,
 } = authApi

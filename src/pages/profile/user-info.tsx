@@ -1,29 +1,64 @@
 import { useState, useEffect } from 'react'
 import { Card, CardContent, TextField, Typography, Grid } from '@mui/material'
+import { toast } from 'react-toastify'
 
-import { UserInputDto, UserDto } from '../../common/auth/types'
+import {
+    UserInputDto,
+    UserDto,
+    UpdateUserInputDto,
+} from '../../common/auth/types'
+import { useUpdateUserMutation } from '../../common/auth/slice'
 import LoadingButton from '../../common/components/LoadingButton'
 
 import useStyles from './styles'
 
 type Props = {
     auth: UserDto
+    setAuth: (user: UserDto) => void
 }
 
-const UserInfo = ({ auth }: Props) => {
+const UserInfo = ({ auth, setAuth }: Props) => {
     const [form, setForm] = useState<UserInputDto>({} as UserInputDto)
-    const [edit, setEdit] = useState(false)
+    const [edit, setEdit] = useState<boolean>(false)
+    const [updateUser, { data: updatedUser, isSuccess }] =
+        useUpdateUserMutation()
     const classes = useStyles()
 
     useEffect(() => {
         if (auth) {
-            setForm(auth)
+            setForm({
+                firstName: auth.firstName,
+                lastName: auth.lastName,
+                email: auth.email,
+                username: auth.username,
+            })
         }
     }, [auth])
+
+    useEffect(() => {
+        if (isSuccess) {
+            toast.success('Profile updated!')
+        }
+    }, [isSuccess])
+
+    useEffect(() => {
+        if (updatedUser) {
+            setAuth(updatedUser)
+        }
+    }, [updatedUser])
 
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = evt.target
         setForm({ ...form, [name]: value })
+    }
+
+    const handleSubmit = () => {
+        const value = {
+            id: auth.id,
+            ...form,
+        } as UpdateUserInputDto
+
+        updateUser(value)
     }
 
     return (
@@ -82,6 +117,7 @@ const UserInfo = ({ auth }: Props) => {
                                 <LoadingButton
                                     loading={false}
                                     variant="contained"
+                                    onClick={handleSubmit}
                                 >
                                     Save
                                 </LoadingButton>

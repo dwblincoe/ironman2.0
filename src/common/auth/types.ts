@@ -29,3 +29,11 @@ export interface PasswordChangeInputDto {
     newPassword: string
     confirmNewPassword: string
 }
+
+export interface UpdateUserInputDto {
+    id: string
+    firstName?: string
+    lastName?: string
+    email: string
+    username: string
+}

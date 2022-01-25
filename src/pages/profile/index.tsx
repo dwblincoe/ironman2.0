@@ -11,7 +11,7 @@ import Uploader from '../../components/uploader'
 import useStyles from './styles'
 
 const Profile = () => {
-    const { auth } = useContext(AuthContext)
+    const { auth, setAuth } = useContext(AuthContext)
     const classes = useStyles()
     const [visible, setVisible] = useState(false)
     const [editVisible, setEditVisible] = useState(false)
@@ -58,7 +58,7 @@ const Profile = () => {
                 <Grid item xs={9}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
-                            <UserInfo auth={auth} />
+                            <UserInfo auth={auth} setAuth={setAuth} />
                         </Grid>
                         <Grid item xs={12}>
                             <ChangePassword />
